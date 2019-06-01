@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find ur_description)/launch/ur10_upload.launch" />
+  <!--<include file="$(find ur_description)/launch/ur5_upload.launch" />-->
+  <!--<include file="$(find ur_description)/launch/ur3_upload.launch" />-->
+  <!-- State Publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>  
+
+ <!-- Combine joint values and qt gui -->
+ <node name="joint_publisher" pkg="joint_publisher_gui" type="joint_publisher_gui"  />
+
+  <!-- Combine joint values with GUI -->
+  <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"> <param name="use_gui" value="true"/> </node>  -->
+
+
+  <!-- Run rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find joint_publisher_gui)/launch/config.rviz"/>
+
+</launch>
